@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Thread list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Text</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for thread in threads %}
+            <tr>
+                <td><a href="{{ path('thread_show', { 'id': thread.id }) }}">{{ thread.id }}</a></td>
+                <td>{{ thread.text }}</td>
+                <td>{% if thread.createdAt %}{{ thread.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if thread.updatedAt %}{{ thread.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('thread_show', { 'id': thread.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('thread_edit', { 'id': thread.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('thread_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

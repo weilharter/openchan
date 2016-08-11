@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/manue/test/my_project/src/AppBundle/Controller/ThreadController.php</file>
+            <file>file:/C:/Users/manue/test/my_project/src/AppBundle/Entity/Thread.php</file>
+            <file>file:/C:/Users/manue/test/my_project/app/Resources/views/base.html.twig</file>
+            <file>file:/C:/Users/manue/test/my_project/src/AppBundle/Controller/PostController.php</file>
+            <file>file:/C:/Users/manue/test/my_project/src/AppBundle/Entity/Post.php</file>
+            <file>file:/C:/Users/manue/test/my_project/src/AppBundle/Form/ThreadType.php</file>
+            <file>file:/C:/Users/manue/test/my_project/src/AppBundle/Form/PostType.php</file>
+        </group>
+    </open-files>
+</project-private>
