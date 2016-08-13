@@ -3,9 +3,9 @@
 {% block javascripts %} <script src='https://www.google.com/recaptcha/api.js'></script> {% endblock %}
 
 {% block body %}
-
-    {#<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-      New Thread
+    <br/>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">
+      <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> New Thread
     </button>
     <div class="collapse" id="collapseExample">
       <h2>New Thread</h2>
@@ -14,20 +14,11 @@
             {{ form_widget(form) }}
             <div class="g-recaptcha" data-sitekey="6LfIiicTAAAAAMEwydeK9UzAQlMnMJ1fK4lZ_l5a"></div>
             <br/>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Create" class="btn btn-success" />
             {{ form_end(form) }}
         </div>
-    </div>#}
-
-    <h2>New Thread</h2>
-    <div class ="formNewThread">
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <div class="g-recaptcha" data-sitekey="6LfIiicTAAAAAMEwydeK9UzAQlMnMJ1fK4lZ_l5a"></div>
-        <br/>
-        <input type="submit" value="Create" />
-        {{ form_end(form) }}
     </div>
+    <br/>
 
     <br/>
     <ol class="breadcrumb">
