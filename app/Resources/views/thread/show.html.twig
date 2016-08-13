@@ -24,8 +24,10 @@
         </tbody>
     </table>
 
+    <img src="{{ asset('uploads/images/' ~ thread.image) }}"></img>
     {% for post in posts %}
         <b>{{post.text}}</b><br>
+{#        <img href="{{ asset('uploads/images/' ~ post.image) }}">View brochure (PDF)</a>#}
     {% endfor %}
 
     <ul>

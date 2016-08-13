@@ -20,16 +20,49 @@ class ThreadController extends Controller
      * Lists all Thread entities.
      *
      * @Route("/", name="thread_index")
-     * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $threads = $em->getRepository('AppBundle:Thread')->findAll();
+        $threads = $em->getRepository('AppBundle:Thread')->findAll(); //list all threads
+        
+        $thread = new Thread(); //create new thread form
+        $form = $this->createForm('AppBundle\Form\ThreadType', $thread);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            
+            // $file stores the uploaded PDF file
+            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+            $file = $thread->getImage();
+
+            // Generate a unique name for the file before saving it
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+            // Move the file to the directory where brochures are stored
+            $file->move(
+                $this->getParameter('images_directory'),
+                $fileName
+            );
+
+            // Update the 'brochure' property to store the PDF file name
+            // instead of its contents
+            $thread->setImage($fileName);
+            $thread->setCreatedAt(new \DateTime());
+            $thread->setUpdatedAt(new \DateTime());
+            
+            
+            $em->persist($thread);
+            $em->flush();
+
+            return $this->redirectToRoute('thread_show', array('id' => $thread->getId()));
+        }
 
         return $this->render('thread/index.html.twig', array(
             'threads' => $threads,
+            'form' => $form->createView(),
         ));
     }
 
@@ -57,7 +90,7 @@ class ThreadController extends Controller
 
             // Move the file to the directory where brochures are stored
             $file->move(
-                '%kernel.root_dir%/../web/uploads/images',
+                $this->getParameter('images_directory'),
                 $fileName
             );
 
