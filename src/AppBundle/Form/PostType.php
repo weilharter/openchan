@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-//use AppBundle\Entity\Thread;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class PostType extends AbstractType
 {
@@ -17,11 +17,10 @@ class PostType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-//            ->add('threadId')
-            ->add('text',  TextareaType::class)
-//            ->add('createdAt', 'datetime')
-//            ->add('updatedAt', 'datetime')
-            /*->add('thread')*/
+                ->add('text', TextareaType::class, array(
+                    'attr' => array('rows' => '5'),
+                ))
+                ->add('image', FileType::class, array('label' => 'Browse...', 'required' => false))
         ;
     }
     

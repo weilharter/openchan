@@ -1,46 +1,60 @@
 {% extends 'base.html.twig' %}
 
+{% block javascripts %} <script src='https://www.google.com/recaptcha/api.js'></script> {% endblock %}
+
 {% block body %}
-    <h1>Thread</h1>
+    <h2>Post Reply in Thread #{{thread.id}}</h2>
+    <div class ="formNewPost">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <div class="g-recaptcha" data-sitekey="6LfIiicTAAAAAMEwydeK9UzAQlMnMJ1fK4lZ_l5a"></div>
+        <br/>
+        <input type="submit" value="Reply" />
+        {{ form_end(form) }}
+    </div>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ thread.id }}</td>
-            </tr>
-            <tr>
-                <th>Text</th>
-                <td>{{ thread.text }}</td>
-            </tr>
-            <tr>
-                <th>Createdat</th>
-                <td>{% if thread.createdAt %}{{ thread.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Updatedat</th>
-                <td>{% if thread.updatedAt %}{{ thread.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-        </tbody>
-    </table>
+    <br/>
+    <ol class="breadcrumb">
+      <li><a href="{{ path('thread_index') }}">Threads</a></li>
+      <li class="active"><a href="{{ path('thread_show', { 'id': thread.id }) }}">Post #{{ thread.id }}</a></li>
+    </ol>
 
-    <img src="{{ asset('uploads/images/' ~ thread.image) }}"></img>
+    <div class="threadListItem">
+        <table width="100%">
+            <tr>
+                <td width="200px">
+                    <a target="_blank" href="{{ asset('uploads/images/' ~ thread.image) }}"> <img src="{{ asset('uploads/images/' ~ thread.image) }}" width="200" height="200"/></a>
+                </td>
+                <td>
+                    <div class="metadata">
+                    <a href="{{ path('thread_show', { 'id': thread.id }) }}"> {% if thread.createdAt %}{{ thread.createdAt|date('Y-m-d H:i:s') }}{% endif %} <b>({{thread.id}})</b></a>
+                    </div>
+                    <div class="threadText">{{thread.text}}</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
     {% for post in posts %}
-        <b>{{post.text}}</b><br>
-{#        <img href="{{ asset('uploads/images/' ~ post.image) }}">View brochure (PDF)</a>#}
+    <div class="postListItem">
+        <table width="100%">
+            <tr>
+                <td width="200px">
+                    {%if post.image%}
+                    <a target="_blank" href="{{ asset('uploads/images/' ~ post.image) }}">  <img src="{{ asset('uploads/images/' ~ post.image) }}" width="200" height="200"/></a>
+                    {% else %} 
+                    <div style="width: 200px;"></div>
+                    {% endif %} 
+                </td>
+                <td>
+                    <div class="metadata">
+                        <a href="{{ path('thread_show', { 'id': thread.id }) }}"> {% if thread.createdAt %}{{ thread.createdAt|date('Y-m-d H:i:s') }}{% endif %} <b>({{thread.id}})</b></a>
+                        </div>
+                    <div class="postText">{{post.text}}</div>
+                </td>
+            </tr>
+        </table>
+    </div>
     {% endfor %}
 
-    <ul>
-        <li>
-            <a href="{{ path('thread_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('thread_edit', { 'id': thread.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
 {% endblock %}

@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Post
@@ -22,6 +23,24 @@ class Post
     private $id;
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     * @Assert\File(mimeTypes={ "image/png", "image/jpeg", "image/jpg", "image/gif" })
+     */
+    private $image;
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
      * @var int
      *
      * @ORM\Column(name="thread_id", type="integer")
@@ -31,7 +50,7 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="text", type="text", length=10000)
+     * @ORM\Column(name="text", type="text", length=10000, nullable=true)
      */
     private $text;
 

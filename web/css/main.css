@@ -4,9 +4,64 @@
    Author's custom styles
    ========================================================================== */
 
+body{
+	background-image: url("../fade.png");
+    background-repeat: repeat-x;
+    background-color: #ffe;
+}
+
+.breadcrumb{
+	background: #f0e0d6 !important;
+}
+
+.threadListItem{
+    padding: 10px;
+    margin: 20px 0px 20px;
+    text-align: left !important;
+    text-decoration: none;
+    display: block;
+    border-radius: 12px;
+    /*background: #FAFAFA;*/
+    background: #f0e0d6;
+    -moz-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+	-webkit-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+	box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+}
+
+.threadListItem td {
+    vertical-align: top;
+}
+
+.threadText{
+	margin: 10px;
+}
 
 
+.postListItem{
+    padding: 10px;
+    margin: 20px 0px 20px;
+    text-align: left !important;
+    text-decoration: none;
+    display: block;
+    border-radius: 12px;
+    /*background: #FAFAFA;*/
+    background: #f0e0d6;
+    -moz-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+	-webkit-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+	box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+}
 
+.postListItem td {
+    vertical-align: top;
+}
+
+.postText{
+	margin-left: 10px;
+}
+
+.metadata{
+	margin: 10px;
+}
 
 
 

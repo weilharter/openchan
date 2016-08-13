@@ -20,8 +20,6 @@ class ThreadType extends AbstractType {
                     'attr' => array('rows' => '5'),
                 ))
                 ->add('image', FileType::class, array('label' => 'Browse...'))
-//            ->add('createdAt', 'datetime')
-//            ->add('updatedAt', 'datetime')
         ;
     }
 
