@@ -119,13 +119,13 @@ class ThreadController extends Controller
 
     protected function checkCaptcha($request)
     {
-//        $recaptcha = new ReCaptcha('6LfIiicTAAAAAPXqFIFZeDyK61LDrcJQa6SEm0Y6');
-//        $resp = $recaptcha->verify($request->request->get('g-recaptcha-response'), $request->getClientIp());
-//
-//        if (!$resp->isSuccess()) {
-//            // Do something if the submit wasn't valid ! Use the message to show something
-//            $message = "The reCAPTCHA wasn't entered correctly. Go back and try it again." . "(reCAPTCHA said: " . $resp->error . ")";
-//            die(); //improve me pls
-//        }
+        $recaptcha = new ReCaptcha('6LfIiicTAAAAAPXqFIFZeDyK61LDrcJQa6SEm0Y6');
+        $resp = $recaptcha->verify($request->request->get('g-recaptcha-response'), $request->getClientIp());
+
+        if (!$resp->isSuccess()) {
+            // Do something if the submit wasn't valid ! Use the message to show something
+            $message = "The reCAPTCHA wasn't entered correctly. Go back and try it again." . "(reCAPTCHA said: " . $resp->error . ")";
+            die(); //improve me pls
+        }
     }
 }
