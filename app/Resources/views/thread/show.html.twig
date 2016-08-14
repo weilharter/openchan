@@ -23,8 +23,8 @@
 
     <br/>
     <ol class="breadcrumb">
-      <li><a href="{{ path('thread_index') }}">Threads</a></li>
-      <li class="active"><a href="{{ path('thread_show', { 'id': thread.id }) }}">Post #{{ thread.id }}</a></li>
+      <li><a href="{{ path('thread_index', {'board_name': board.getName }) }}">Threads</a></li>
+      <li class="active"><a href="{{ path('thread_show', {'board_name': board.getName ,'id': thread.id }) }}">Thread #{{ thread.id }}</a></li>
     </ol>
 
     <div class="threadListItem">
@@ -35,7 +35,8 @@
                 </td>
                 <td>
                     <div class="metadata">
-                    <a href="{{ path('thread_show', { 'id': thread.id }) }}"> {% if thread.createdAt %}{{ thread.createdAt|date('Y-m-d H:i:s') }}{% endif %} <b>({{thread.id}})</b></a>
+                    <a href="{{ path('thread_show', {'board_name': board.getName ,'id': thread.id }) }}"> {% if thread.createdAt %}{{ thread.createdAt|date('Y-m-d H:i:s') }}{% endif %} <b>(Thread #{{thread.id}})</b></a>
+                    , Replies: {{thread.getPosts|length}}
                     </div>
                     <div class="threadText">{{thread.text}}</div>
                 </td>
@@ -56,7 +57,7 @@
                 </td>
                 <td>
                     <div class="metadata">
-                        <a href="{{ path('thread_show', { 'id': thread.id }) }}"> {% if thread.createdAt %}{{ thread.createdAt|date('Y-m-d H:i:s') }}{% endif %} <b>({{thread.id}})</b></a>
+                        <a href="{{ path('thread_show', {'board_name': board.getName ,'id': thread.id }) }}"> {% if thread.createdAt %}{{ thread.createdAt|date('Y-m-d H:i:s') }}{% endif %} <b>(Post #{{post.id}})</b></a>
                         </div>
                     <div class="postText">{{post.text}}</div>
                 </td>

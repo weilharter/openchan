@@ -5,13 +5,13 @@
    ========================================================================== */
 
 body{
-	background-image: url("../fade.png");
+    background-image: url("../fade.png");
     background-repeat: repeat-x;
     background-color: #ffe;
 }
 
 .breadcrumb{
-	background: #f0e0d6 !important;
+    background: #f0e0d6 !important;
 }
 
 .threadListItem{
@@ -24,8 +24,8 @@ body{
     /*background: #FAFAFA;*/
     background: #f0e0d6;
     -moz-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
-	-webkit-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
-	box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+    -webkit-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+    box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
 }
 
 .threadListItem td {
@@ -33,7 +33,7 @@ body{
 }
 
 .threadText{
-	margin: 10px;
+    margin: 10px;
 }
 
 
@@ -47,8 +47,8 @@ body{
     /*background: #FAFAFA;*/
     background: #f0e0d6;
     -moz-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
-	-webkit-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
-	box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+    -webkit-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+    box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
 }
 
 .postListItem td {
@@ -56,11 +56,15 @@ body{
 }
 
 .postText{
-	margin-left: 10px;
+    margin-left: 10px;
 }
 
 .metadata{
-	margin: 10px;
+    margin: 10px;
+}
+
+.jumbotron {
+    background-color: white !important;
 }
 
 

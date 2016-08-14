@@ -10,4 +10,12 @@ namespace AppBundle\Repository;
  */
 class ThreadRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllOrderedByCreatedAt($board)
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT t FROM AppBundle:Thread t WHERE t.board = :board ORDER BY t.createdAt DESC'
+            )->setParameter('board', $board)
+            ->getResult();
+    }
 }

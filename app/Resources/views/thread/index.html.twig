@@ -23,7 +23,7 @@
 
     <br/>
     <ol class="breadcrumb">
-      <li><a class="active" href="{{ path('thread_index') }}">Threads</a></li>
+      <li><a class="active" href="{{ path('thread_index', { 'board_name': 'b' }) }}">Threads</a></li>
     </ol>
 
     {#<div class="panel panel-default">
@@ -42,7 +42,8 @@
                     </td>
                     <td>
                         <div class="metadata">
-                        <a href="{{ path('thread_show', { 'id': thread.id }) }}"> {% if thread.createdAt %}{{ thread.createdAt|date('Y-m-d H:i:s') }}{% endif %} <b>({{thread.id}})</b></a>
+                        <a href="{{ path('thread_show', {'board_name': board.getName ,'id': thread.id }) }}"> {% if thread.createdAt %}{{ thread.createdAt|date('Y-m-d H:i:s') }}{% endif %} <b>(Thread #{{thread.id}})</b></a>
+                        , Replies: {{thread.getPosts|length}}
                         </div>
                         <div class="threadText">{{thread.text|striptags|slice(0, 600)}} ...</div>
                     </td>

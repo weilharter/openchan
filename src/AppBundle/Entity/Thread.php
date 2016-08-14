@@ -27,6 +27,19 @@ class Thread
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="board_id", type="integer")
+     */
+    private $board_id;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Board", inversedBy="threads")
+     * @ORM\JoinColumn(name="board_id", referencedColumnName="id")
+     */
+    private $board;
 
     /**
      * @ORM\Column(type="string")
@@ -188,5 +201,53 @@ class Thread
     public function getPosts()
     {
         return $this->posts;
+    }
+
+    /**
+     * Set boardId
+     *
+     * @param integer $boardId
+     *
+     * @return Thread
+     */
+    public function setBoardId($boardId)
+    {
+        $this->board_id = $boardId;
+
+        return $this;
+    }
+
+    /**
+     * Get boardId
+     *
+     * @return integer
+     */
+    public function getBoardId()
+    {
+        return $this->board_id;
+    }
+
+    /**
+     * Set board
+     *
+     * @param \AppBundle\Entity\Board $board
+     *
+     * @return Thread
+     */
+    public function setBoard(\AppBundle\Entity\Board $board = null)
+    {
+        $this->board = $board;
+
+        return $this;
+    }
+
+    /**
+     * Get board
+     *
+     * @return \AppBundle\Entity\Board
+     */
+    public function getBoard()
+    {
+        return $this->board;
     }
 }

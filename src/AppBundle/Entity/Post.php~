@@ -46,6 +46,12 @@ class Post
      * @ORM\Column(name="thread_id", type="integer")
      */
     private $threadId;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Thread", inversedBy="posts")
+     * @ORM\JoinColumn(name="thread_id", referencedColumnName="id")
+     */
+    private $thread;
 
     /**
      * @var string
@@ -67,13 +73,6 @@ class Post
      * @ORM\Column(name="updated_at", type="datetime")
      */
     private $updatedAt;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Thread", inversedBy="posts")
-     * @ORM\JoinColumn(name="thread_id", referencedColumnName="id")
-     */
-    private $thread;
-
 
     /**
      * Get id
