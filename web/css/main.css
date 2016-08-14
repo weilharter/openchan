@@ -5,14 +5,14 @@
    ========================================================================== */
 
 body{
-    background-image: url("../fade.png");
-    background-repeat: repeat-x;
-    background-color: #ffe;
+    background-image: url("../fabric_plaid.png");
+    background-repeat: repeat-xy;
+    background-color: white;
 }
 
-.breadcrumb{
+/*.breadcrumb{
     background: #f0e0d6 !important;
-}
+}*/
 
 .threadListItem{
     padding: 10px;

@@ -33,7 +33,7 @@ class ThreadController extends Controller
         $threads = $paginator->paginate(
             $em->getRepository('AppBundle:Thread')->findAllOrderedByCreatedAt($board), /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
-            20/*limit per page*/
+            8/*limit per page*/
         );
         
         $thread = new Thread(); //create new thread form

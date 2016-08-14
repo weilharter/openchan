@@ -1,0 +1,17 @@
+{% for post in posts %}
+    <div class="panel panel-default">
+        <div class="panel-heading"><a href="{{ path('thread_show', {'board_name': board.getName ,'id': thread.id }) }}"> {% if post.createdAt %}{{ post.createdAt|date('Y-m-d H:i:s') }}{% endif %} <b>(Post #{{post.id}})</b></a></div>
+        <div class="panel-body">
+            <div class="row">
+                {%if post.getImage%}
+                    <div class="col-xs-6 col-md-3">
+                        <a target="_blank" href="{{ asset('uploads/images/' ~ post.image) }}" class="thumbnail">
+                            <img src="{{ asset('uploads/images/' ~ post.image) | imagine_filter('post_thumb') }}" alt="">
+                        </a>
+                    </div>
+                {%endif%}
+                <div class="postText">{{post.getText}}</div>
+            </div>
+        </div>
+    </div>
+{% endfor %}

@@ -1,0 +1,19 @@
+<div class="panel panel-default">
+    <div class="panel-heading"><a href="{{ path('thread_show', {'board_name': board.getName ,'id': thread.id }) }}"> {% if thread.createdAt %}{{ thread.createdAt|date('Y-m-d H:i:s') }}{% endif %} <b>(Thread #{{thread.id}})</b></a>
+    <a href="#"><span class="badge">{{thread.getPosts|length}}</span></a></div>
+    <div class="panel-body">
+        <div class="row">
+            {%if thread.getImage%}
+                <div class="col-xs-6 col-md-3">
+                    <a target="_blank" href="{{ asset('uploads/images/' ~ thread.image) }}" class="thumbnail">
+                        <img src="{{ asset('uploads/images/' ~ thread.image) | imagine_filter('post_thumb') }}" alt="">
+                    </a>
+                </div>
+            {%endif%}
+            <div class="postText">{{thread.getText}}</div>
+        </div>
+        <div class="row" style="margin: 20px;">
+            {{ include('post/postPanel.html.twig', { 'posts': thread.getPosts|sort|slice(thread.getPosts|length-3,3) }) }}
+        </div>
+    </div>
+</div>

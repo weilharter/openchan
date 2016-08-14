@@ -3,13 +3,16 @@
 {% block javascripts %} <script src='https://www.google.com/recaptcha/api.js'></script> {% endblock %}
 
 {% block body %}
-
     <br/>
+    <ol class="breadcrumb">
+        <li><a class="active" href="{{ path('thread_index', { 'board_name': 'b' }) }}">Threads</a></li>
+    </ol>
+    
     <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">
-      <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> New Thread
+        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> New Thread
     </button>
     <div class="collapse" id="collapseExample">
-      <h2>New Thread</h2>
+        <h2>New Thread</h2>
         <div class ="formNewThread">
             {{ form_start(form) }}
             {{ form_widget(form) }}
@@ -20,39 +23,12 @@
         </div>
     </div>
     <br/>
-
     <br/>
-    <ol class="breadcrumb">
-      <li><a class="active" href="{{ path('thread_index', { 'board_name': 'b' }) }}">Threads</a></li>
-    </ol>
-
-    {#<div class="panel panel-default">
-      <div class="panel-heading">Panel heading without title</div>
-      <div class="panel-body">
-        Panel content
-      </div>
-    </div>#}
 
     {% for thread in threads %}
-        <div class="threadListItem">
-            <table width="100%">
-                <tr>
-                    <td width="200px">
-                        <a target="_blank" href="{{ asset('uploads/images/' ~ thread.image) }}"> <img src="{{ asset('uploads/images/' ~ thread.image) }}" width="200" height="200"/></a>
-                    </td>
-                    <td>
-                        <div class="metadata">
-                        <a href="{{ path('thread_show', {'board_name': board.getName ,'id': thread.id }) }}"> {% if thread.createdAt %}{{ thread.createdAt|date('Y-m-d H:i:s') }}{% endif %} <b>(Thread #{{thread.id}})</b></a>
-                        , Replies: {{thread.getPosts|length}}
-                        </div>
-                        <div class="threadText">{{thread.text|striptags|slice(0, 600)}} ...</div>
-                    </td>
-                </tr>
-            </table>
-        </div>
+        {{ include('thread/threadPanel.html.twig') }}
     {% endfor %}
 
-    {# display navigation #}
-        <h3>{{ knp_pagination_render(threads) }}</h3>
+    <h3>{{ knp_pagination_render(threads) }}</h3>
 
 {% endblock %}

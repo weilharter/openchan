@@ -5,65 +5,45 @@
 {% block body %}
 
     <br/>
+    <ol class="breadcrumb">
+        <li><a href="{{ path('thread_index', {'board_name': board.getName }) }}">Threads</a></li>
+        <li class="active"><a href="{{ path('thread_show', {'board_name': board.getName ,'id': thread.id }) }}">Thread #{{ thread.id }}</a></li>
+    </ol>
+    
     <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">
-      <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Reply
+        <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Reply
     </button>
     <div class="collapse" id="collapseExample">
         <h2>Post Reply in Thread #{{thread.id}}</h2>
-            <div class ="formNewPost">
-                {{ form_start(form) }}
-                {{ form_widget(form) }}
-                <div class="g-recaptcha" data-sitekey="6LfIiicTAAAAAMEwydeK9UzAQlMnMJ1fK4lZ_l5a"></div>
-                <br/>
-                 <input type="submit" value="Reply" class="btn btn-success" />
-                {{ form_end(form) }}
-            </div>
+        <div class ="formNewPost">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <div class="g-recaptcha" data-sitekey="6LfIiicTAAAAAMEwydeK9UzAQlMnMJ1fK4lZ_l5a"></div>
+            <br/>
+            <input type="submit" value="Reply" class="btn btn-success" />
+            {{ form_end(form) }}
+        </div>
     </div>
     <br/>
-
     <br/>
-    <ol class="breadcrumb">
-      <li><a href="{{ path('thread_index', {'board_name': board.getName }) }}">Threads</a></li>
-      <li class="active"><a href="{{ path('thread_show', {'board_name': board.getName ,'id': thread.id }) }}">Thread #{{ thread.id }}</a></li>
-    </ol>
 
-    <div class="threadListItem">
-        <table width="100%">
-            <tr>
-                <td width="200px">
-                    <a target="_blank" href="{{ asset('uploads/images/' ~ thread.image) }}"> <img src="{{ asset('uploads/images/' ~ thread.image) }}" width="200" height="200"/></a>
-                </td>
-                <td>
-                    <div class="metadata">
-                    <a href="{{ path('thread_show', {'board_name': board.getName ,'id': thread.id }) }}"> {% if thread.createdAt %}{{ thread.createdAt|date('Y-m-d H:i:s') }}{% endif %} <b>(Thread #{{thread.id}})</b></a>
-                    , Replies: {{thread.getPosts|length}}
+    <div class="panel panel-default">
+        <div class="panel-heading"><a href="{{ path('thread_show', {'board_name': board.getName ,'id': thread.id }) }}"> {% if thread.createdAt %}{{ thread.createdAt|date('Y-m-d H:i:s') }}{% endif %} <b>(Thread #{{thread.id}})</b></a></div>
+        <div class="panel-body">
+            <div class="row">
+                {%if thread.getImage%}
+                    <div class="col-xs-6 col-md-3">
+                        <a target="_blank" href="{{ asset('uploads/images/' ~ thread.image) }}" class="thumbnail">
+                            <img src="{{ asset('uploads/images/' ~ thread.image) | imagine_filter('post_thumb') }}" />
+                        </a>
                     </div>
-                    <div class="threadText">{{thread.text}}</div>
-                </td>
-            </tr>
-        </table>
+                {%endif%}
+                <div class="postText">{{thread.getText}}</div>
+            </div>
+            <div class="row" style="margin: 20px;">
+                {{ include('post/postPanel.html.twig') }}
+            </div>
+        </div>
     </div>
-
-    {% for post in posts %}
-    <div class="postListItem">
-        <table width="100%">
-            <tr>
-                <td width="200px">
-                    {%if post.image%}
-                    <a target="_blank" href="{{ asset('uploads/images/' ~ post.image) }}">  <img src="{{ asset('uploads/images/' ~ post.image) }}" width="200" height="200"/></a>
-                    {% else %} 
-                    <div style="width: 200px;"></div>
-                    {% endif %} 
-                </td>
-                <td>
-                    <div class="metadata">
-                        <a href="{{ path('thread_show', {'board_name': board.getName ,'id': thread.id }) }}"> {% if thread.createdAt %}{{ thread.createdAt|date('Y-m-d H:i:s') }}{% endif %} <b>(Post #{{post.id}})</b></a>
-                        </div>
-                    <div class="postText">{{post.text}}</div>
-                </td>
-            </tr>
-        </table>
-    </div>
-    {% endfor %}
 
 {% endblock %}
