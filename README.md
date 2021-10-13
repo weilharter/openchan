@@ -2,5 +2,4 @@
 
 # OpenChan
 
-A simple image-based bulletin board where anyone can post comments and share images.
-Created with Symfony + Bootstrap
+A simple image-based bulletin board where anyone can post comments and share images
